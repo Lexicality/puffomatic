@@ -12,8 +12,12 @@ app.get('/toke', (req, res) => {
 });
 
 app.post('/toke', (req, res) => {
-	console.log(req.body);
-	res.send({response: "Nice"});
+	console.log(req.get('Content-Type'), req.body);
+	if (Math.random() > 0.5) {
+		res.send("nice");
+	} else {
+		res.send("blaze it");
+	}
 });
 
 app.listen(8080);
