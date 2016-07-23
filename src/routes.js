@@ -40,12 +40,11 @@ function tokesGET(req, res, next) {
 
 	const search = { bongID };
 
-	return Toke.count(search)
-		.then((num) => {
-			log.info(`There are ${ num } results!`);
-			return Toke.find(search);
-		})
+	return Toke.find(search)
+		.lean()
 		.then((results) => {
+			log.info(`${ results.length } results!`);
+
 			console.dir(results);
 		})
 		.then(() =>
