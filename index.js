@@ -1,10 +1,22 @@
 const express = require('express');
-const morgan = require('morgan');
+const winston = require('winston');
 const bodyParser = require('body-parser')
+const expressWinston = require('express-winston');
 
+let log = new winston.Logger({
+	level: 'silly',
+	transports: [
+		new winston.transports.Console({ colorize: true }),
+	],
+});
 const app = express();
 
-app.use(morgan("dev"));
+app.use(expressWinston.logger({
+	winstonInstance: log,
+	level: 'debug',
+	colorStatus: true,
+	expressFormat: true,
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
