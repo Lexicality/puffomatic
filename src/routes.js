@@ -34,7 +34,7 @@ function tokePOST(req, res, next) {
 		.catch(next);
 }
 
-function no_s(key) {
+function no_s(value, key) {
 	return key.indexOf('_') != 0;
 }
 
