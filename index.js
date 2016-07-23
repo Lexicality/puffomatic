@@ -43,18 +43,25 @@ app.post('/toke', (req, res) => {
 });
 
 
+const httpPort = 8080;
+
 mongoose.connect(
 	'mongodb://localhost/mean-dev',
 	{
 		user: '',
 		pass: '',
+	}
+)
+.then(
+	() => {
+		log.info("Connected to MongoDB");
+		app.listen(httpPort, (...args) => {
+			log.debug("Arguments:");
+			console.dir(args);
+			log.info(`Listening on port ${ httpPort }`);
+		});
 	},
 	(err) => {
-		if (err) {
-			log.error(`Unable to connect to mongo! ${ err }`);
-			return
-		}
-		log.info("MONGO WANT CANDY");
-		app.listen(8080);
+		log.error(`Unable to connect to mongo! ${ err }`);
 	}
 );
