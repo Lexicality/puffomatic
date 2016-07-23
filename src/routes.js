@@ -34,7 +34,7 @@ function tokePOST(req, res, next) {
 }
 
 function tokesGET(req, res, next) {
-	const { bongID } = req.query;
+	const { bongID } = req.params;
 
 	log.info(`We\'re trying to find out about ${ bongID }`);
 
