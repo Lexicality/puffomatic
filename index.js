@@ -2,6 +2,7 @@ const express = require('express');
 const winston = require('winston');
 const bodyParser = require('body-parser')
 const expressWinston = require('express-winston');
+const mongoose = require('mongoose');
 
 let log = new winston.Logger({
 	level: 'silly',
@@ -41,4 +42,19 @@ app.post('/toke', (req, res) => {
 	}
 });
 
-app.listen(8080);
+
+mongoose.connect(
+	'mongodb://localhost/mean-dev',
+	{
+		user: '',
+		pass: '',
+	},
+	(err) => {
+		if (err) {
+			log.error(`Unable to connect to mongo! ${ err }`);
+			return
+		}
+		log.info("MONGO WANT CANDY");
+		app.listen(8080);
+	}
+);
