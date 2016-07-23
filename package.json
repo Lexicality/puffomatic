@@ -1,0 +1,33 @@
+{
+  "name": "puffomatic",
+  "version": "0.0.1",
+  "description": "webscale drugs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lexicality/puffomatic.git"
+  },
+  "keywords": [
+    "drugs",
+    "idiocy"
+  ],
+  "engines": { "node": ">=6.0.0" },
+  "author": "Lex R",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/Lexicality/puffomatic/issues"
+  },
+  "homepage": "https://github.com/Lexicality/puffomatic#readme",
+  "dependencies": {
+    "connect-mongo": "^1.2.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.5.5",
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^1.4.8"
+  }
+}
