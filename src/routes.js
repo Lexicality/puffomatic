@@ -34,9 +34,12 @@ function tokePOST(req, res, next) {
 		.catch(next);
 }
 
-function no_s(value, key) {
-	return key.indexOf('_') === 0;
-}
+
+const uselessKeys = [
+	"_id",
+	"__v",
+	"bongID",
+];
 
 function tokesGET(req, res, next) {
 	const { bongID } = req.params;
@@ -50,7 +53,7 @@ function tokesGET(req, res, next) {
 		.then((results) => {
 			log.info(`${ results.length } results!`);
 
-			res.send(results.map((toke) => _.omitBy(toke, no_s)));
+			res.send(results.map((toke) => _.omit(toke, uselessKeys)));
 		})
 		.catch(next);
 }
