@@ -33,7 +33,16 @@ function tokePOST(req, res, next) {
 		.catch(next);
 }
 
+function tokesGET(req, res) {
+	const { bongID } = req.query;
+
+	const tokes = Toke.find({ bongID });
+
+	res.send(tokes);
+}
+
 module.exports = {
 	tokeGET,
 	tokePOST,
+	tokesGET,
 };

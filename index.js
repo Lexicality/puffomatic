@@ -4,7 +4,11 @@ const expressWinston = require('express-winston');
 const mongoose = require('mongoose');
 
 const log = require('./src/logging');
-const { tokeGET, tokePOST } = require('./src/routes');
+const {
+	tokeGET,
+	tokePOST,
+	tokesGET,
+} = require('./src/routes');
 
 const app = express();
 
@@ -19,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/toke', tokeGET);
 app.post('/toke', tokePOST);
+app.get('/tokes/:bongID', tokesGET);
 
 const httpPort = 8080;
 
