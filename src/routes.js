@@ -1,10 +1,11 @@
 const log = require('./logging');
+const { Toke } = require('./models');
 
 function tokeGET(req, res) {
 	res.send("Nice");
 }
 
-function tokePOST(req, res) {
+function tokePOST(req, res, next) {
 	const {
 		data,
 		coreid,
@@ -13,6 +14,14 @@ function tokePOST(req, res) {
 	const [ duration, pressure ] = data.split(',');
 
 	log.info(`Got a toke from ${ coreid } for ${ duration }ms at ${ published_at }`);
+	const toke = new Toke({
+		length: parseInt(duration, 10),
+		when: new Date(published_at),
+		pressureDrop: parseInt(pressure, 10),
+		bongID: coreid,
+	});
+
+	toke.save().catch(next);
 
 	if (pressure < -500) {
 		res.send("nice");
