@@ -36,11 +36,21 @@ function tokePOST(req, res, next) {
 function tokesGET(req, res, next) {
 	const { bongID } = req.query;
 
-	return Toke.find({ bongID })
-		.then((data) => {
-			console.dir(data);
-			res.send("it probs worked!");
+	log.info(`We\'re trying to find out about ${ bongID }`);
+
+	const search = { bongID };
+
+	return Toke.count(search)
+		.then((num) => {
+			log.info(`There are ${ num } results!`);
+			return Toke.find(search);
 		})
+		.then((results) => {
+			console.dir(results);
+		})
+		.then(() =>
+			res.send("It probs worked!")
+		)
 		.catch(next);
 }
 
