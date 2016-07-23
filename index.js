@@ -55,9 +55,7 @@ mongoose.connect(
 .then(
 	() => {
 		log.info("Connected to MongoDB");
-		app.listen(httpPort, (...args) => {
-			log.debug("Arguments:");
-			console.dir(args);
+		app.listen(httpPort, () => {
 			log.info(`Listening on port ${ httpPort }`);
 		});
 	},
