@@ -1,5 +1,6 @@
 const log = require('./logging');
 const { Toke } = require('./models');
+const _ = require('lodash');
 
 function tokeGET(req, res) {
 	res.send("Nice");
@@ -33,6 +34,10 @@ function tokePOST(req, res, next) {
 		.catch(next);
 }
 
+function no_s(key) {
+	return key.indexOf('_') != 0;
+}
+
 function tokesGET(req, res, next) {
 	const { bongID } = req.params;
 
@@ -45,11 +50,8 @@ function tokesGET(req, res, next) {
 		.then((results) => {
 			log.info(`${ results.length } results!`);
 
-			console.dir(results);
+			res.send(results.map((toke) => _.omitBy(toke, no_s)));
 		})
-		.then(() =>
-			res.send("It probs worked!")
-		)
 		.catch(next);
 }
 
