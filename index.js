@@ -45,6 +45,9 @@ app.post('/toke', (req, res) => {
 
 const httpPort = 8080;
 
+// Fucking dumbass shit
+mongoose.Promise = Promise;
+
 mongoose.connect(
 	'mongodb://localhost/mean-dev',
 	{
