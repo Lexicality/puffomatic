@@ -21,13 +21,16 @@ function tokePOST(req, res, next) {
 		bongID: coreid,
 	});
 
-	toke.save().catch(next);
-
-	if (pressure < -500) {
-		res.send("nice");
-	} else {
-		res.send("blaze it harder bitch");
-	}
+	return toke
+		.save()
+		.then(() => {
+			if (toke.get('pressureDrop') < -500) {
+				res.send("nice");
+			} else {
+				res.send("blaze it harder bitch");
+			}
+		})
+		.catch(next);
 }
 
 module.exports = {
