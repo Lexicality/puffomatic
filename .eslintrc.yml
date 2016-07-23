@@ -10,3 +10,8 @@ env:
   commonjs: yes
   es6: yes
 extends: "eslint:recommended"
+rules:
+  comma-dangle:
+    - error
+    - always-multiline
+  semi: error
