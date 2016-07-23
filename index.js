@@ -13,7 +13,7 @@ const app = express();
 
 app.use(expressWinston.logger({
 	winstonInstance: log,
-	level: 'debug',
+	level: 'silly',
 	colorStatus: true,
 	expressFormat: true,
 }));
@@ -32,7 +32,7 @@ app.post('/toke', (req, res) => {
 	} = req.body;
 	const [ duration, pressure ] = data.split(',');
 
-	log.debug(`Got a toke from ${ coreid } for ${ duration }ms at ${ published_at }`);
+	log.info(`Got a toke from ${ coreid } for ${ duration }ms at ${ published_at }`);
 
 	if (pressure < -500) {
 		res.send("nice");
