@@ -1,0 +1,12 @@
+parserOptions:
+  ecmaVersion: 6
+  sourceType: script
+  ecmaFeatures:
+    impliedStrict: no
+    jsx: no
+env:
+  browser: no
+  node: yes
+  commonjs: yes
+  es6: yes
+extends: "eslint:recommended"
