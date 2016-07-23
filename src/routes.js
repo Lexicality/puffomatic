@@ -35,7 +35,7 @@ function tokePOST(req, res, next) {
 }
 
 function no_s(value, key) {
-	return key.indexOf('_') != 0;
+	return key.indexOf('_') === 0;
 }
 
 function tokesGET(req, res, next) {
