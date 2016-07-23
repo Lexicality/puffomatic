@@ -25,11 +25,19 @@ app.get('/toke', (req, res) => {
 });
 
 app.post('/toke', (req, res) => {
-	console.log(req.get('Content-Type'), req.body);
-	if (Math.random() > 0.5) {
+	const {
+		data,
+		coreid,
+		published_at,
+	} = req.body;
+	const [ duration, pressure ] = data.split(',');
+
+	log.debug(`Got a toke from ${ coreid } for ${ duration }ms at ${ published_at }`);
+
+	if (pressure < -500) {
 		res.send("nice");
 	} else {
-		res.send("blaze it");
+		res.send("blaze it harder bitch");
 	}
 });
 
