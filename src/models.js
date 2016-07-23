@@ -1,4 +1,6 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const bongSchema = new Schema({
 	owner: String,
@@ -12,8 +14,8 @@ const tokeSchema = new Schema({
 	bongID: String,
 });
 
-const Bong = model('Bong', bongSchema);
-const Toke = model('Toke', tokeSchema);
+const Bong = mongoose.model('Bong', bongSchema);
+const Toke = mongoose.model('Toke', tokeSchema);
 
 module.exports = {
 	bongSchema,
